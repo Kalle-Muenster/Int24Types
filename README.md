@@ -14,5 +14,5 @@
 
 - Int24Types is a .Net dll project which provides 24 bit integer types (a signed and an unsigned variant) which can be used almost same like other 8, 16, 32 and 64 bit integer types in .Net
 - It's based on an (also in this repo contained) single header include library which is written in native C++ and which implements INT24 and UINT24 types in a way that makes possible using these together with c++ std library functions 
-- The .Net types Int24 and UInt24 it provides are binary compatible with the relaying native c++ implementations and can be passed directly from managed clr environment to unmanaged code located a linked c++ binary and vice versa.   
+- The Int24 and UInt24 types wihch this .Net library provides are binary compatible with their relaying native c++ implementations and can be passed directly from a managed clr environment to unmanaged code located linked c++ binaries and vice versa.   
  
