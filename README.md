@@ -7,7 +7,7 @@
 
 ### 1. Int24Types for native C++ 
 
-- This comes as a single file include header *src/int24bittypes.hpp* which easyly can be used in c++ projects by just including a single file 
+- This comes as a single file include header *src/int24bittypes.hpp* which easyly can be used in c++ projects by just including this single file 
 - Optionally std/stl support can be enabled via define INT24_TYPETRAIT_SUPPORT. with this set to 1, the header additionally implements numeric_limits and type_traits extensions for the c++ std library which make possible that std library functions can handle passed variables of 24bit integer types correctly.
 
 ### 2. Int24Types for .Net
