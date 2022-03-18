@@ -1,7 +1,7 @@
 # Int24Types
 ### 24bit Integer Types  (Int24 and UInt24) for 
 - C++ (single file include header) 
-- .Net (interop dll project)
+- .Net (interop dll)
 
 ## Short description:
 
