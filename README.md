@@ -1,11 +1,14 @@
 # Int24Types
-### 24bit Integer Types  (Int24 and UInt24) native C++ (single file include header) and .Net (interop dll project)
+### 24bit Integer Types  (Int24 and UInt24) for 
+- native C++ (single file include header) 
+- .Net (interop dll project)
 
 ## Short description:
 
-### 1. Int24Types for Native C++ 
+### 1. Int24Types for native C++ 
 
-- These come as a single include header which easyly can be added to c++ projects by just including file *src/int24bittypes.hpp* so. 
+- These come as a single include header which easyly can be added to c++ projects by just including file *src/int24bittypes.hpp*
+- Optionally std/stl support can be enabled via #define symbol. with that additionally numeric_limits and type_traits extension will be implemented which make possible that the 24bit types can be used together with the c++ std library     
 
 ### 2. Int24Types for .Net
 
