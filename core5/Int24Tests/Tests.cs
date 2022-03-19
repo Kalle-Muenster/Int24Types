@@ -9,7 +9,7 @@ StdStream.Init(
   | CreationFlags.NoInputLog
 );
 
-TestCase test = new Int24Test(
+TestCase test = new Int24Types(
     Args.Contains("-v") ||
     Args.Contains("--verbose")
 ).Run();

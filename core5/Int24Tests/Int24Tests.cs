@@ -5,15 +5,18 @@ namespace Int24Tests {
     namespace Tests
     {
 
-        public class Int24Test : TestCase
+        public class Int24Types : TestCase
         {
+            private Version  assemblyversion;
             private UInt32[] proofUint24;
             private UInt24[] arrayUInt24;
             private Int32[]  proofInt24;
             private Int24[]  arrayInt24;
 
-            public Int24Test(bool verbose) : base(verbose)
+            public Int24Types(bool verbose) : base(verbose)
             {
+                assemblyversion = System.Reflection.Assembly.GetAssembly(typeof(UInt24)).GetName().Version;
+
                 proofUint24 = new UInt32[10] {
                     8388000,8388001,8388002,8388003,8388004,
                     8388005,8388006,8388007,8388008,8388009
@@ -35,6 +38,8 @@ namespace Int24Tests {
 
             protected override void Test()
             {
+                Consola.StdStream.Out.WriteLine("version: {0}", assemblyversion);
+
                 NextCase("Int24 - Arithmetic");
                 arithmeticS24();
                 CloseCase(CurrentCase);

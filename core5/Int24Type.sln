@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "test_int24_dotnet_dll", "In
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test_int24_native_cpp", "..\cpp\Int24TypeTestsNativeCppt\Int24TypeTestsNativeCppt.vcxproj", "{DBBBE4C5-C2B8-45CD-937B-250A87D2382B}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StdStreams", "..\..\ConsolaStreams\ConsolaCore5\ConsolaCore5\ConsolaCore5.vcxproj", "{C5293268-18BD-4F1D-B97F-873EF5E7B2F7}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StdStreams", "..\..\Consola\ConsolaCore5\ConsolaCore5\ConsolaCore5.vcxproj", "{C5293268-18BD-4F1D-B97F-873EF5E7B2F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

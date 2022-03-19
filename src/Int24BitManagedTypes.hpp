@@ -154,22 +154,22 @@ namespace Stepflow
         }
 
         // Implementations: IConvertible
-        virtual bool ToBoolean(System::IFormatProvider^ provider);
-        virtual unsigned char ToByte(System::IFormatProvider^ provider);
-        virtual wchar_t ToChar(System::IFormatProvider^ provider);
-        virtual System::DateTime ToDateTime(System::IFormatProvider^ provider);
-        virtual System::Decimal ToDecimal(System::IFormatProvider^ provider);
-        virtual double ToDouble(System::IFormatProvider^ provider);
-        virtual short ToInt16(System::IFormatProvider^ provider);
-        virtual int ToInt32(System::IFormatProvider^ provider);
-        virtual long long ToInt64(System::IFormatProvider^ provider);
-        virtual signed char ToSByte(System::IFormatProvider^ provider);
-        virtual float ToSingle(System::IFormatProvider^ provider);
-        virtual System::String^ ToString(System::IFormatProvider^ provider);
-        virtual System::Object^ ToType(System::Type^ conversionType, System::IFormatProvider^ provider);
-        virtual unsigned short ToUInt16(System::IFormatProvider^ provider);
-        virtual unsigned int ToUInt32(System::IFormatProvider^ provider);
-        virtual unsigned long long ToUInt64(System::IFormatProvider^ provider);
+        virtual bool ToBoolean(System::IFormatProvider^ provider) = System::IConvertible::ToBoolean;
+        virtual unsigned char ToByte(System::IFormatProvider^ provider) = System::IConvertible::ToByte;
+        virtual wchar_t ToChar(System::IFormatProvider^ provider) = System::IConvertible::ToChar;
+        virtual System::DateTime ToDateTime(System::IFormatProvider^ provider) = System::IConvertible::ToDateTime;
+        virtual System::Decimal ToDecimal(System::IFormatProvider^ provider) = System::IConvertible::ToDecimal;
+        virtual double ToDouble(System::IFormatProvider^ provider) = System::IConvertible::ToDouble;
+        virtual short ToInt16(System::IFormatProvider^ provider) = System::IConvertible::ToInt16;
+        virtual int ToInt32(System::IFormatProvider^ provider) = System::IConvertible::ToInt32;
+        virtual long long ToInt64(System::IFormatProvider^ provider) = System::IConvertible::ToInt64;
+        virtual signed char ToSByte(System::IFormatProvider^ provider) = System::IConvertible::ToSByte;
+        virtual float ToSingle(System::IFormatProvider^ provider) = System::IConvertible::ToSingle;
+        virtual System::String^ ToString(System::IFormatProvider^ provider) = System::IConvertible::ToString;
+        virtual System::Object^ ToType(System::Type^ conversionType, System::IFormatProvider^ provider) = System::IConvertible::ToType;
+        virtual unsigned short ToUInt16(System::IFormatProvider^ provider) = System::IConvertible::ToUInt16;
+        virtual unsigned int ToUInt32(System::IFormatProvider^ provider) = System::IConvertible::ToUInt32;
+        virtual unsigned long long ToUInt64(System::IFormatProvider^ provider) = System::IConvertible::ToUInt64;
 };
 
 
@@ -279,21 +279,21 @@ namespace Stepflow
         virtual System::TypeCode GetTypeCode(void) { return System::TypeCode(24); }
 
         // IConvertible interface
-        virtual bool ToBoolean(System::IFormatProvider^ provider);
-        virtual unsigned char ToByte(System::IFormatProvider^ provider);
-        virtual wchar_t ToChar(System::IFormatProvider^ provider);
-        virtual System::DateTime ToDateTime(System::IFormatProvider^ provider);
-        virtual System::Decimal ToDecimal(System::IFormatProvider^ provider);
-        virtual double ToDouble(System::IFormatProvider^ provider);
-        virtual short ToInt16(System::IFormatProvider^ provider);
-        virtual int ToInt32(System::IFormatProvider^ provider);
-        virtual long long ToInt64(System::IFormatProvider^ provider);
-        virtual System::SByte ToSByte(System::IFormatProvider^ provider);
-        virtual float ToSingle(System::IFormatProvider^ provider);
-        virtual System::String^ ToString(System::IFormatProvider^ provider);
-        virtual System::Object^ ToType(System::Type^ conversionType, System::IFormatProvider^ provider);
-        virtual unsigned short ToUInt16(System::IFormatProvider^ provider);
-        virtual unsigned int ToUInt32(System::IFormatProvider^ provider);
-        virtual unsigned long long ToUInt64(System::IFormatProvider^ provider);
+        virtual bool ToBoolean(System::IFormatProvider^ provider) = System::IConvertible::ToBoolean;
+        virtual unsigned char ToByte(System::IFormatProvider^ provider) = System::IConvertible::ToByte;
+        virtual wchar_t ToChar(System::IFormatProvider^ provider) = System::IConvertible::ToChar;
+        virtual System::DateTime ToDateTime(System::IFormatProvider^ provider) = System::IConvertible::ToDateTime;
+        virtual System::Decimal ToDecimal(System::IFormatProvider^ provider) = System::IConvertible::ToDecimal;
+        virtual double ToDouble(System::IFormatProvider^ provider) = System::IConvertible::ToDouble;
+        virtual short ToInt16(System::IFormatProvider^ provider) = System::IConvertible::ToInt16;
+        virtual int ToInt32(System::IFormatProvider^ provider) = System::IConvertible::ToInt32;
+        virtual long long ToInt64(System::IFormatProvider^ provider) = System::IConvertible::ToInt64;
+        virtual signed char ToSByte(System::IFormatProvider^ provider) = System::IConvertible::ToSByte;
+        virtual float ToSingle(System::IFormatProvider^ provider) = System::IConvertible::ToSingle;
+        virtual System::String^ ToString(System::IFormatProvider^ provider) = System::IConvertible::ToString;
+        virtual System::Object^ ToType(System::Type^ conversionType, System::IFormatProvider^ provider) = System::IConvertible::ToType;
+        virtual unsigned short ToUInt16(System::IFormatProvider^ provider) = System::IConvertible::ToUInt16;
+        virtual unsigned int ToUInt32(System::IFormatProvider^ provider) = System::IConvertible::ToUInt32;
+        virtual unsigned long long ToUInt64(System::IFormatProvider^ provider) = System::IConvertible::ToUInt64;
 };
 }

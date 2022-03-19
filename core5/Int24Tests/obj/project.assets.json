@@ -1,60 +1,29 @@
 {
   "version": 3,
   "targets": {
-    "net5.0": {
-      "Int24Types/1.0.0": {
-        "type": "project",
-        "compile": {
-          "bin/placeholder/Int24Types.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Int24Types.dll": {}
-        }
-      },
-      "StdStreams/1.0.0": {
-        "type": "project",
-        "compile": {
-          "bin/placeholder/StdStreams.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/StdStreams.dll": {}
-        }
-      }
-    }
+    "net5.0": {}
   },
-  "libraries": {
-    "Int24Types/1.0.0": {
-      "type": "project",
-      "path": "../Int24Type/Int24Type.vcxproj",
-      "msbuildProject": "../Int24Type/Int24Type.vcxproj"
-    },
-    "StdStreams/1.0.0": {
-      "type": "project",
-      "path": "../../../ConsolaStreams/ConsolaCore5/ConsolaCore5/ConsolaCore5.vcxproj",
-      "msbuildProject": "../../../ConsolaStreams/ConsolaCore5/ConsolaCore5/ConsolaCore5.vcxproj"
-    }
-  },
+  "libraries": {},
   "projectFileDependencyGroups": {
-    "net5.0": [
-      "Int24Types >= 1.0.0",
-      "StdStreams >= 1.0.0"
-    ]
+    "net5.0": []
   },
   "packageFolders": {
     "C:\\Users\\kalle\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
-    "version": "0.1.0.2",
+    "version": "0.0.0.3",
     "restore": {
-      "projectUniqueName": "D:\\PROJECTS\\Int24Types\\core5\\Int24Tests\\test_int24_dotnet_dll.csproj",
-      "projectName": "test_int24_dotnet_dll",
-      "projectPath": "D:\\PROJECTS\\Int24Types\\core5\\Int24Tests\\test_int24_dotnet_dll.csproj",
+      "projectUniqueName": "C:\\WORKSPACE\\PROJECTS\\GITSPACE\\Int24Types\\core5\\Int24Tests\\test_int24_dotnet_dll.csproj",
+      "projectName": "Int24Types",
+      "projectPath": "C:\\WORKSPACE\\PROJECTS\\GITSPACE\\Int24Types\\core5\\Int24Tests\\test_int24_dotnet_dll.csproj",
       "packagesPath": "C:\\Users\\kalle\\.nuget\\packages\\",
-      "outputPath": "D:\\PROJECTS\\Int24Types\\core5\\Int24Tests\\obj\\",
+      "outputPath": "C:\\WORKSPACE\\PROJECTS\\GITSPACE\\Int24Types\\core5\\Int24Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
         "C:\\Users\\kalle\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -66,19 +35,14 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "C:\\Program Files\\dotnet": {},
+        "d:\\LIBRARIES": {},
+        "https://www.nuget.org/api/v2/": {}
       },
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {
-            "D:\\PROJECTS\\ConsolaStreams\\ConsolaCore5\\ConsolaCore5\\ConsolaCore5.vcxproj": {
-              "projectPath": "D:\\PROJECTS\\ConsolaStreams\\ConsolaCore5\\ConsolaCore5\\ConsolaCore5.vcxproj"
-            },
-            "D:\\PROJECTS\\Int24Types\\core5\\Int24Type\\Int24Type.vcxproj": {
-              "projectPath": "D:\\PROJECTS\\Int24Types\\core5\\Int24Type\\Int24Type.vcxproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
@@ -105,7 +69,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }
