@@ -171,8 +171,8 @@ int main(int argc,char** argv)
     sample = -sample;
     IS_EQUAL( sample, -5000 );
     printf( "\nVerifying negation operator of signed INT_24BIT type\n"
-            "(sample = 5000; result = -sample;) result is %i: %s\n",
-            (int)sample, check );
+            "%s: sample = 5000; result = -sample; => result is %i\n",
+            check, (int)sample );
     failures += WAS_FAIL;
 
     if ( failures > 0 ) {
