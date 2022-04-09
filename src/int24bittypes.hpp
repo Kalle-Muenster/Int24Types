@@ -46,13 +46,21 @@ typedef float              single;
 #define COMMANDLINER_ESCENTIALS_DEFINED (1)
 #endif
 
-
+#ifdef  USE_NAMESPACER 
+#include <WaveLib.inl/namespacer.h>
+#define BEGIN_INT24SPACE BEGIN_NAMESPACE
+#define ENDOF_INT24SPACE ENDOF_NAMESPACE
+#define USING_INT24SPACE USING_NAMESPACE
+#define INT24TYPES_API NAMESPACE_API
+#define Int24sNameSpace(decl) NameSpace(decl)
+#else
 #ifndef BEGIN_INT24SPACE
 #define BEGIN_INT24SPACE namespace DECLARE_24BIT_NAMESPACE {
 #define ENDOF_INT24SPACE }
 #define USING_INT24SPACE using namespace DECLARE_24BIT_NAMESPACE;
 #define INT24TYPES_API
 #define Int24sNameSpace( decl ) DECLARE_24BIT_NAMESPACE:: decl
+#endif
 #endif
 
 BEGIN_INT24SPACE

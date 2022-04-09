@@ -54,22 +54,23 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Int24Type\Int24Type.vcxproj" />
+    <ProjectReference Include="..\..\..\Consola\ConsolaCore5\ConsolaCore5Tests\ConsolaTests.csproj">
+      <CopyLocal>True</CopyLocal>
+      <CopyLocalSatelliteAssemblies>True</CopyLocalSatelliteAssemblies>
+    </ProjectReference>
+    <ProjectReference Include="..\Int24Type\Int24Type.vcxproj">
+      <Private>True</Private>
+    </ProjectReference>
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="Consola">
       <HintPath>linkage\Consola.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Int24Types">
-      <HintPath>linkage\Int24Types.dll</HintPath>
-      <Private>True</Private>
     </Reference>
   </ItemGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="&quot;$(ProjectDir)copyLinkage.bat&quot; &quot;$(PlatformTarget)&quot; &quot;$(ConfigurationName)&quot;" />
+    <Exec Command="&quot;$(ProjectDir)copyLinkage.bat&quot; &quot;$(PlatformTarget)&quot; &quot;$(Configuration)&quot;" />
   </Target>
 
 </Project>

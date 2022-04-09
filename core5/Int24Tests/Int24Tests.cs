@@ -5,7 +5,7 @@ namespace Int24Tests {
     namespace Tests
     {
 
-        public class Int24Types : TestCase
+        public class Int24Types : Consola.Tests.TestSuite
         {
             private Version  assemblyversion;
             private UInt32[] proofUint24;

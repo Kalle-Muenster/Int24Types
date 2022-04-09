@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
-using Consola;
 using Int24Tests.Tests;
+using Consola.Tests;
 
 List<string> Args = new List<string>(args);
 
-StdStream.Init(
-    CreationFlags.CreateLog
-  | CreationFlags.NoInputLog
+Consola.StdStream.Init(
+    Consola.CreationFlags.CreateLog
+  | Consola.CreationFlags.NoInputLog
 );
 
-TestCase test = new Int24Types(
+TestSuite test = new Int24Types(
     Args.Contains("-v") ||
     Args.Contains("--verbose")
 ).Run();
