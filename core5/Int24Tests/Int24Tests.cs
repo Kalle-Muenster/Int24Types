@@ -13,7 +13,7 @@ namespace Int24Tests {
             private Int32[]  proofInt24;
             private Int24[]  arrayInt24;
 
-            public Int24Types(bool verbose) : base(verbose)
+            public Int24Types(bool verbose,bool xmllog) : base(verbose,xmllog)
             {
                 assemblyversion = System.Reflection.Assembly.GetAssembly(typeof(UInt24)).GetName().Version;
 

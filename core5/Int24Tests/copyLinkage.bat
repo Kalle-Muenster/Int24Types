@@ -3,7 +3,7 @@ set _link_=%~dp0linkage
 set _arch_=%~1
 set _conf_=%~2
 
-set CONSOLASTREMS=c:\WORKSPACE\PROJECTS\GITSPACE\Consola\bin\core5\v142\%_arch_%\%_conf_%
+set CONSOLASTREMS=C:\WORKSPACE\PROJECTS\GITSPACE\Consola\bin\core5\v142\%_arch_%\Test\%_conf_%\net5.0
 
 cd %~dp0
 cd..

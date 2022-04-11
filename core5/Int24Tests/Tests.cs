@@ -11,7 +11,8 @@ Consola.StdStream.Init(
 
 TestSuite test = new Int24Types(
     Args.Contains("-v") ||
-    Args.Contains("--verbose")
+    Args.Contains("--verbose"),
+    Args.Contains("--xml")
 ).Run();
 
 return test.wasErrors() ?

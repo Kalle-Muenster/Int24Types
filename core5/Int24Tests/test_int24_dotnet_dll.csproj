@@ -54,18 +54,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Consola\ConsolaCore5\ConsolaCore5Tests\ConsolaTests.csproj">
-      <CopyLocal>True</CopyLocal>
-      <CopyLocalSatelliteAssemblies>True</CopyLocalSatelliteAssemblies>
+    <ProjectReference Include="..\..\..\Consola\ConsolaCore5\ConsolaCore5Tests\Consola.Tests.csproj">
+      <Private>true</Private>
     </ProjectReference>
-    <ProjectReference Include="..\Int24Type\Int24Type.vcxproj">
-      <Private>True</Private>
-    </ProjectReference>
+    <ProjectReference Include="..\..\..\Consola\ConsolaCore5\ConsolaCore5\ConsolaCore5.vcxproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Consola">
-      <HintPath>linkage\Consola.dll</HintPath>
+    <Reference Include="Consola.Tests">
+      <HintPath>linkage\Consola.Tests.dll</HintPath>
+    </Reference>
+    <Reference Include="Int24Types">
+      <HintPath>linkage\Int24Types.dll</HintPath>
     </Reference>
   </ItemGroup>
 

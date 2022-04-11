@@ -1,11 +1,29 @@
 {
   "version": 3,
   "targets": {
-    "net5.0": {}
+    "net5.0": {
+      "Consola/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Consola.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Consola.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Consola/1.0.0": {
+      "type": "project",
+      "path": "../../../Consola/ConsolaCore5/ConsolaCore5/ConsolaCore5.vcxproj",
+      "msbuildProject": "../../../Consola/ConsolaCore5/ConsolaCore5/ConsolaCore5.vcxproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net5.0": []
+    "net5.0": [
+      "Consola >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\kalle\\.nuget\\packages\\": {},
@@ -42,7 +60,14 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\WORKSPACE\\PROJECTS\\GITSPACE\\Consola\\ConsolaCore5\\ConsolaCore5Tests\\Consola.Tests.csproj": {
+              "projectPath": "C:\\WORKSPACE\\PROJECTS\\GITSPACE\\Consola\\ConsolaCore5\\ConsolaCore5Tests\\Consola.Tests.csproj"
+            },
+            "C:\\WORKSPACE\\PROJECTS\\GITSPACE\\Consola\\ConsolaCore5\\ConsolaCore5\\ConsolaCore5.vcxproj": {
+              "projectPath": "C:\\WORKSPACE\\PROJECTS\\GITSPACE\\Consola\\ConsolaCore5\\ConsolaCore5\\ConsolaCore5.vcxproj"
+            }
+          }
         }
       },
       "warningProperties": {
