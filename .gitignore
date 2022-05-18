@@ -1,0 +1,7 @@
+bin/
+*/.vs
+*obj/Release/
+*obj/Debug/
+*.vc.db
+x64/
+x86/
