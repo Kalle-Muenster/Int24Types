@@ -1,91 +1,93 @@
 ﻿using System;
 using System.Collections.Generic;
 using Stepflow;
+using Consola.Test;
+using Consolo = Consola.Consola;
 
 namespace Stepflow {
     namespace Tests {
 
-        public class Int24BitTypes
-           : Consola.Tests.TestCase
+        public class Int24BitTypes : Test
         {
             private Version assemblyversion;
 
-            public Int24BitTypes(bool verbose) : base(verbose)
+            public Int24BitTypes(TestResults testflags) 
+                : base( testflags.HasFlag(TestResults.Verbose), testflags.HasFlag(TestResults.XmlOutput) )
             {
                 assemblyversion = System.Reflection.Assembly.GetAssembly(typeof(UInt24)).GetName().Version;
             }
 
-            protected override void StartRun()
+            protected override void TestSuite()
             {
-                Consola.StdStream.Out.WriteLine("version: {0}", assemblyversion.ToString());
-                NextStep("Int24Arithmetic");
+                Consolo.Out.WriteLine("version: {0}", assemblyversion.ToString());
+                NextCase("Int24Arithmetic");
                 arithmeticS24();
-                StepDone(hasPassed());
-                NextStep("Int24ArrayAccesings");
+                CloseCase( hasPassed() );
+                NextCase("Int24ArrayAccesings");
                 nativeArraysS24();
-                StepDone(hasPassed());
-                NextStep("UInt24Arithmetic");
+                CloseCase( hasPassed() );
+                NextCase("UInt24Arithmetic");
                 arithmeticI24();
-                StepDone(hasPassed());
-                NextStep("UInt24ArrayAccessings");
+                CloseCase( hasPassed() );
+                NextCase("UInt24ArrayAccessings");
                 nativeArraysI24();
-                StepDone(hasPassed());
+                CloseCase(hasPassed());
             }
 
             private void arithmeticI24()
             {
-                CountStep((UInt24.DB0Value == 8388608u),
+                CheckStep((UInt24.DB0Value == 8388608u),
                            "UInt24.DB0Value is 8388608");
                 UInt24 sample = UInt24.DB0Value + 1000;
-                CountStep(sample == 8389608, "sample 0db + 1000,... expected: {0}", 8389608);
-                CountStep(sample > UInt24.DB0Value, string.Format("sample {0} is MORE then 0db", sample));
+                CheckStep(sample == 8389608, "sample 0db + 1000,... expected: {0}", 8389608);
+                CheckStep(sample > UInt24.DB0Value, string.Format("sample {0} is MORE then 0db", sample));
                 sample -= 2000;
-                CountStep(sample == 8387608, "sample -= 2000,... expected: {0}", 8387608);
-                CountStep(sample < UInt24.DB0Value, string.Format("sample {0} is LESS then 0db", sample));
+                CheckStep(sample == 8387608, "sample -= 2000,... expected: {0}", 8387608);
+                CheckStep(sample < UInt24.DB0Value, string.Format("sample {0} is LESS then 0db", sample));
 
                 sample = sample / 2;
-                CountStep(sample == 4193804, "sample = sample / 2,... expected: {0}", 4193804);
+                CheckStep(sample == 4193804, "sample = sample / 2,... expected: {0}", 4193804);
                 sample *= 2;
-                CountStep(sample == 8387608, "sample *= 2,... expected: {0}", 8387608);
+                CheckStep(sample == 8387608, "sample *= 2,... expected: {0}", 8387608);
                 sample -= -1000;
-                CountStep(sample == UInt24.DB0Value, "sample -= -1000,... expected:  UInt24.DB0Value");
+                CheckStep(sample == UInt24.DB0Value, "sample -= -1000,... expected:  UInt24.DB0Value");
                 sample = UInt24.MaxValue;
                 sample++;
-                CountStep(sample == UInt24.MinValue, string.Format("sample at 1 over type maximum: {0}", sample));
+                CheckStep(sample == UInt24.MinValue, string.Format("sample at 1 over type maximum: {0}", sample));
 
                 sample = -1;
-                CountStep(sample == UInt24.MaxValue, string.Format("assign -1 to UInt24 varable: {0}", sample));
+                CheckStep(sample == UInt24.MaxValue, string.Format("assign -1 to UInt24 varable: {0}", sample));
             }
 
             private void arithmeticS24()
             {
-                CountStep((Int24.DB0Value == 0),
+                CheckStep((Int24.DB0Value == 0),
                            "Int24.DB0Value is 0");
                 Int24 sample = Int24.DB0Value + 1000;
-                CountStep(sample == 1000, "sample = 0db + 1000,... expected: {0}", 1000);
-                CountStep(sample > Int24.DB0Value, string.Format("sample {0} is MORE then 0db", sample));
+                CheckStep(sample == 1000, "sample = 0db + 1000,... expected: {0}", 1000);
+                CheckStep(sample > Int24.DB0Value, string.Format("sample {0} is MORE then 0db", sample));
                 sample -= 2000;
-                CountStep(sample == -1000, "sample -= 2000,... expected: {0}", -1000);
-                CountStep(sample < Int24.DB0Value, string.Format("sample {0} is LESS then 0db", sample));
+                CheckStep(sample == -1000, "sample -= 2000,... expected: {0}", -1000);
+                CheckStep(sample < Int24.DB0Value, string.Format("sample {0} is LESS then 0db", sample));
 
                 sample = sample / 2;
-                CountStep(sample == -500, "sample = sample / 2,... expected: {0}", -500);
+                CheckStep(sample == -500, "sample = sample / 2,... expected: {0}", -500);
                 sample *= 2;
-                CountStep(sample == -1000, "sample *= 2,... expected: {0}", -1000);
+                CheckStep(sample == -1000, "sample *= 2,... expected: {0}", -1000);
                 sample = -sample;
-                CountStep(sample == 1000, "sample = -sample,... expected: {0}", 1000);
+                CheckStep(sample == 1000, "sample = -sample,... expected: {0}", 1000);
                 sample += -1000;
-                CountStep(sample == Int24.DB0Value, "sample += -1000,.. expected: Int24.DB0Value");
+                CheckStep(sample == Int24.DB0Value, "sample += -1000,.. expected: Int24.DB0Value");
                 sample = Int24.MaxValue;
                 sample++;
-                CountStep(sample == Int24.MinValue, string.Format("sample at 1 over type maximum: {0}", sample));
+                CheckStep(sample == Int24.MinValue, string.Format("sample at 1 over type maximum: {0}", sample));
 
                 unsafe
                 {
                     sample = -1;
                     UInt24 maxval = *(UInt24*)&sample;
                     bool equal = maxval == UInt24.MaxValue;
-                    CountStep(equal, "reinterprete cast Int24 variable of value -1 as UInt24 variable: {0}", maxval);
+                    CheckStep(equal, "reinterprete cast Int24 variable of value -1 as UInt24 variable: {0}", maxval);
                 }
 
             }
@@ -103,7 +105,7 @@ namespace Stepflow {
                 };
                 for (int i = 0; i < 10; ++i)
                 {
-                    CountStep(array[i] == proof[i], "sample at index {0} is {1},.. expected: {2}", i, array[i], proof[i]);
+                    CheckStep(array[i] == proof[i], "sample at index {0} is {1},.. expected: {2}", i, array[i], proof[i]);
                 }
                 unsafe
                 {
@@ -117,13 +119,13 @@ namespace Stepflow {
                         end = ptInt24 + 10;
                         for (Int24* dst = ptInt24; dst != end; ++dst)
                         {
-                            CountStep(*dst == 8388123, "sample is {0},.. expected: {1}", *dst, 8388123);
+                            CheckStep(*dst == 8388123, "sample is {0},.. expected: {1}", *dst, 8388123);
                         };
                     }
                 }
                 for (int i = 0; i < 10; ++i)
                 {
-                    CountStep(array[i] == 8388123, "array at index {0} is {1},.. expected: {2}", i, array[i], 8388123);
+                    CheckStep(array[i] == 8388123, "array at index {0} is {1},.. expected: {2}", i, array[i], 8388123);
                 }
             }
 
@@ -139,7 +141,7 @@ namespace Stepflow {
                 };
                 for (int i = 0; i < 10; ++i)
                 {
-                    CountStep(array[i] == proof[i], "sample at index {0} is {1},.. expected: {2}", i, array[i], proof[i]);
+                    CheckStep(array[i] == proof[i], "sample at index {0} is {1},.. expected: {2}", i, array[i], proof[i]);
                 }
                 unsafe
                 {
@@ -153,46 +155,48 @@ namespace Stepflow {
                         end = ptUInt24 + 10;
                         for (UInt24* dst = ptUInt24; dst != end; ++dst)
                         {
-                            CountStep(*dst == 8388123, "sample is {0},.. expected: {1}", *dst, 8388123);
+                            CheckStep(*dst == 8388123, "sample is {0},.. expected: {1}", *dst, 8388123);
                         };
                     }
                 }
                 for (int i = 0; i < 10; ++i)
                 {
-                    CountStep(array[i] == 8388123, "array at index {0} is {1},.. expected: {2}", i, array[i], 8388123);
+                    CheckStep(array[i] == 8388123, "array at index {0} is {1},.. expected: {2}", i, array[i], 8388123);
                 }
             }
         }
 
         public class Int24Tests
         {
-            public static int Main(string[] args)
+            public static int Main( string[] args )
             {
-                Consola.StdStream.Init(
-                    Consola.CreationFlags.CreateLog
-                   | Consola.CreationFlags.NoInputLog);
+                Consolo.Init(
+                     Consola.CreationFlags.OutputLog
+                );
 
                 int failures = 0;
-                bool verbose = false;
+                TestResults outputoptions = TestResults.TextOutput;
                 foreach (string arg in args)
                 {
                     if (arg.StartsWith("--"))
                     {
                         if (arg == "--verbose")
                         {
-                            verbose = true;
+                            outputoptions |= TestResults.Verbose;
+                        } else if (arg == "--xml") {
+                            outputoptions |= TestResults.XmlOutput;
                         }
                     }
                     else if (arg.Length > 1)
                     {
                         if (arg[0] == '-' && arg[1] == 'v' && arg.Length == 2)
                         {
-                            verbose = true;
+                            outputoptions |= TestResults.Verbose;
                         }
                     }
                 }
 
-                Consola.Tests.TestCase result = new Int24BitTypes(verbose).Run();
+                Test result = new Int24BitTypes( outputoptions ).Run();
                 failures += result.getFailures();
 
                 if ( result.wasErrors() ) {

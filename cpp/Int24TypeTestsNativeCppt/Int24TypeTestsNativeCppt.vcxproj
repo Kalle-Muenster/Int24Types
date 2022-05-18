@@ -24,7 +24,7 @@
     <ProjectGuid>{dbbbe4c5-c2b8-45cd-937b-250a87d2382b}</ProjectGuid>
     <RootNamespace>Int24TypeTestsNativeCppt</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>test_int24_native_cpp</ProjectName>
+    <ProjectName>Int24Native</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

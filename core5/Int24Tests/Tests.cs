@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Int24Tests.Tests;
-using Consola.Tests;
+using Consola.Test;
 
 List<string> Args = new List<string>(args);
 
@@ -9,7 +9,7 @@ Consola.StdStream.Init(
   | Consola.CreationFlags.NoInputLog
 );
 
-TestSuite test = new Int24Types(
+Test test = new Int24Types(
     Args.Contains("-v") ||
     Args.Contains("--verbose"),
     Args.Contains("--xml")

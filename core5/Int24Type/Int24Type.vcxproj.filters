@@ -30,6 +30,9 @@
     <ClInclude Include="..\..\src\int24bittypes.hpp">
       <Filter>Quelldateien</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\versionmacro.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">

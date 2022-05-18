@@ -77,55 +77,59 @@
     <IncludePath>.\;C:\CMD\CCommands;$(ProjectDir)..\..\src;D:\LIBRARIES\INCLUDES;$(IncludePath)</IncludePath>
     <OutDir>$(ProjectDir)..\..\bin\dot48\$(PlatformTarget)\$(Configuration)\</OutDir>
     <IntDir>$(PlatformTarget)\$(Configuration)\</IntDir>
+    <LinkKeyFile>$(ProjectDir)..\..\Int24Types.snk</LinkKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>.\;C:\CMD\CCommands;$(ProjectDir)..\..\src;D:\LIBRARIES\INCLUDES;$(IncludePath)</IncludePath>
     <OutDir>$(ProjectDir)..\..\bin\dot48\$(PlatformTarget)\$(Configuration)\</OutDir>
     <IntDir>$(PlatformTarget)\$(Configuration)\</IntDir>
+    <LinkKeyFile>$(ProjectDir)..\..\Int24Types.snk</LinkKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>.\;C:\CMD\CCommands;$(ProjectDir)..\..\src;D:\LIBRARIES\INCLUDES;$(IncludePath)</IncludePath>
     <OutDir>$(ProjectDir)..\..\bin\dot48\$(PlatformTarget)\$(Configuration)\</OutDir>
     <IntDir>$(PlatformTarget)\$(Configuration)\</IntDir>
+    <LinkKeyFile>$(ProjectDir)..\..\Int24Types.snk</LinkKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>.\;C:\CMD\CCommands;$(ProjectDir)..\..\src;D:\LIBRARIES\INCLUDES;$(IncludePath)</IncludePath>
     <OutDir>$(ProjectDir)..\..\bin\dot48\$(PlatformTarget)\$(Configuration)\</OutDir>
     <IntDir>$(PlatformTarget)\$(Configuration)\</IntDir>
+    <LinkKeyFile>$(ProjectDir)..\..\Int24Types.snk</LinkKeyFile>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;INT24TYPES_VERSION="$(Int24VersionString)";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
       <AdditionalDependencies />
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <Version>00000003</Version>
+      <Version>$(Int24VersionNumber)</Version>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;INT24TYPES_VERSION="$(Int24VersionString)";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
       <AdditionalDependencies />
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <Version>00000003</Version>
+      <Version>$(Int24VersionNumber)</Version>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;INT24TYPES_VERSION="$(Int24VersionString)";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>Full</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -136,13 +140,13 @@
     <Link>
       <AdditionalDependencies />
       <GenerateDebugInformation>false</GenerateDebugInformation>
-      <Version>00000003</Version>
+      <Version>$(Int24VersionNumber)</Version>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;INT24TYPES_VERSION="$(Int24VersionString)";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>Full</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -153,7 +157,7 @@
     <Link>
       <AdditionalDependencies />
       <GenerateDebugInformation>false</GenerateDebugInformation>
-      <Version>00000003</Version>
+      <Version>$(Int24VersionNumber)</Version>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -164,6 +168,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\int24bittypes.hpp" />
     <ClInclude Include="..\..\src\Int24BitManagedTypes.hpp" />
+    <ClInclude Include="..\..\src\versionmacro.h" />
     <ClInclude Include="D:\LIBRARIES\INCLUDES\enumoperators.h" />
     <ClInclude Include="D:\LIBRARIES\INCLUDES\namespacer.h" />
     <ClInclude Include="resource.h" />
@@ -182,6 +187,9 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="app.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Build.cmd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

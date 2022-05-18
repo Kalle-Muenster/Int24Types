@@ -8,14 +8,14 @@ using namespace System::Security::Permissions;
 
 [assembly:AssemblyTitleAttribute(L"Int24Type")];
 [assembly:AssemblyDescriptionAttribute(L"")];
-[assembly:AssemblyConfigurationAttribute(L"")];
+[assembly:AssemblyConfigurationAttribute( INT24TYPES_CONFIGURATION )];
 [assembly:AssemblyCompanyAttribute(L"")];
 [assembly:AssemblyProductAttribute(L"Int24Type")];
 [assembly:AssemblyCopyrightAttribute(L"Copyright (c)  2021")];
 [assembly:AssemblyTrademarkAttribute(L"")];
 [assembly:AssemblyCultureAttribute(L"")];
 
-[assembly:AssemblyVersionAttribute(Int24BitTypeVersionString)];
+[assembly:AssemblyVersionAttribute( INT24TYPES_VERSION_STRING )];
 
 [assembly:ComVisible(false)];
 

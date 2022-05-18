@@ -12,7 +12,7 @@ using namespace System::Security::Permissions;
 //
 [assembly:AssemblyTitleAttribute(L"Int24Types")];
 [assembly:AssemblyDescriptionAttribute(L"")];
-[assembly:AssemblyConfigurationAttribute(L"")];
+[assembly:AssemblyConfigurationAttribute(INT24TYPES_CONFIGURATION)];
 [assembly:AssemblyCompanyAttribute(L"")];
 [assembly:AssemblyProductAttribute(L"Int24Types")];
 [assembly:AssemblyCopyrightAttribute(L"Copyright (c)  2021")];
@@ -30,7 +30,7 @@ using namespace System::Security::Permissions;
 // Sie können alle Werte angeben oder für die Revisions- und Buildnummer den Standard
 // übernehmen, indem Sie "*" eingeben:
 
-[assembly:AssemblyVersionAttribute(INT24_TYPES_VERSION_STRING) ];
+[assembly:AssemblyVersionAttribute(INT24TYPES_VERSION_STRING) ];
 
 [assembly:ComVisible(false)];
 

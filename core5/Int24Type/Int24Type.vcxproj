@@ -78,58 +78,71 @@
     <IncludePath>./;C:\CMD\CCommands;$(ProjectDir)../../src;D:\LIBRARIES\INCLUDES;C:\WORKSPACE\PROJECTS\Int24Types\src;$(IncludePath)</IncludePath>
     <OutDir>$(ProjectDir)..\..\bin\core5\$(PlatformTarget)\$(Configuration)\</OutDir>
     <IntDir>$(PlatformTarget)\$(Configuration)\</IntDir>
+    <LinkKeyFile>$(ProjectDir)..\..\Int24Types.snk</LinkKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>./;C:\CMD\CCommands;$(ProjectDir)../../src;D:\LIBRARIES\INCLUDES;C:\WORKSPACE\PROJECTS\Int24Types\src;$(IncludePath)</IncludePath>
     <OutDir>$(ProjectDir)..\..\bin\core5\$(PlatformTarget)\$(Configuration)\</OutDir>
     <IntDir>$(PlatformTarget)\$(Configuration)\</IntDir>
+    <LinkKeyFile>$(ProjectDir)..\..\Int24Types.snk</LinkKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>./;C:\CMD\CCommands;$(ProjectDir)../../src;D:\LIBRARIES\INCLUDES;C:\WORKSPACE\PROJECTS\Int24Types\src;$(IncludePath)</IncludePath>
     <OutDir>$(ProjectDir)..\..\bin\core5\$(PlatformTarget)\$(Configuration)\</OutDir>
     <IntDir>$(PlatformTarget)\$(Configuration)\</IntDir>
+    <LinkKeyFile>$(ProjectDir)..\..\Int24Types.snk</LinkKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>./;C:\CMD\CCommands;$(ProjectDir)../../src;D:\LIBRARIES\INCLUDES;C:\WORKSPACE\PROJECTS\Int24Types\src;$(IncludePath)</IncludePath>
     <OutDir>$(ProjectDir)..\..\bin\core5\$(PlatformTarget)\$(Configuration)\</OutDir>
     <IntDir>$(PlatformTarget)\$(Configuration)\</IntDir>
+    <LinkKeyFile>$(ProjectDir)..\..\Int24Types.snk</LinkKeyFile>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;INT24TYPES_VERSION="$(Int24VersionString)";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerOutput>AssemblyCode</AssemblerOutput>
     </ClCompile>
     <Link>
       <AdditionalDependencies />
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <Version>00000003</Version>
-      <PreventDllBinding>true</PreventDllBinding>
+      <Version>$(Int24VersionNumber)</Version>
+      <PreventDllBinding>false</PreventDllBinding>
     </Link>
+    <Manifest>
+      <VerboseOutput>true</VerboseOutput>
+    </Manifest>
+    <Manifest>
+      <AssemblyIdentity>Int24Types, Version=$(Int24VersionString), Culture=neutral, PublicKeyToken=fbaad4661f5afd90, processorArchitecture=x86</AssemblyIdentity>
+    </Manifest>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;INT24TYPES_VERSION="$(Int24VersionString)";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerOutput>AssemblyCode</AssemblerOutput>
     </ClCompile>
     <Link>
       <AdditionalDependencies />
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <Version>00000003</Version>
-      <PreventDllBinding>true</PreventDllBinding>
+      <Version>$(Int24VersionNumber)</Version>
+      <PreventDllBinding>false</PreventDllBinding>
     </Link>
+    <Manifest>
+      <AssemblyIdentity>Int24Types, Version=$(Int24VersionString), Culture=neutral, PublicKeyToken=fbaad4661f5afd90, processorArchitecture=AMD64</AssemblyIdentity>
+    </Manifest>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;INT24TYPES_VERSION="$(Int24VersionString)";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -139,16 +152,19 @@
     <Link>
       <AdditionalDependencies />
       <GenerateDebugInformation>false</GenerateDebugInformation>
-      <Version>00000003</Version>
-      <PreventDllBinding>true</PreventDllBinding>
+      <Version>$(Int24VersionNumber)</Version>
+      <PreventDllBinding>false</PreventDllBinding>
     </Link>
+    <Manifest>
+      <AssemblyIdentity>Int24Types, Version=$(Int24VersionString), Culture=neutral, PublicKeyToken=fbaad4661f5afd90, processorArchitecture=x86</AssemblyIdentity>
+    </Manifest>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;INT24TYPES_VERSION="$(Int24VersionString)";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -158,13 +174,17 @@
     <Link>
       <AdditionalDependencies />
       <GenerateDebugInformation>false</GenerateDebugInformation>
-      <Version>00000003</Version>
-      <PreventDllBinding>true</PreventDllBinding>
+      <Version>$(Int24VersionNumber)</Version>
+      <PreventDllBinding>false</PreventDllBinding>
     </Link>
+    <Manifest>
+      <AssemblyIdentity>Int24Types, Version=$(Int24VersionString), Culture=neutral, PublicKeyToken=fbaad4661f5afd90, processorArchitecture=AMD64</AssemblyIdentity>
+    </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Int24BitManagedTypes.hpp" />
     <ClInclude Include="..\..\src\int24bittypes.hpp" />
+    <ClInclude Include="..\..\src\versionmacro.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="settings.h" />
   </ItemGroup>

@@ -1,11 +1,12 @@
 ﻿using System;
 using Stepflow;
+using Consola.Test;
 
 namespace Int24Tests {
     namespace Tests
     {
 
-        public class Int24Types : Consola.Tests.TestSuite
+        public class Int24Types : Test
         {
             private Version  assemblyversion;
             private UInt32[] proofUint24;
@@ -36,7 +37,7 @@ namespace Int24Tests {
                 };
             }
 
-            protected override void Test()
+            protected override void TestSuite()
             {
                 Consola.StdStream.Out.WriteLine("version: {0}", assemblyversion);
 

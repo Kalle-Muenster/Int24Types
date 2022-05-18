@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NdLkmzBPHjRxwTD1iTfkN9rCbZXAyRvqg7nglbIVt/aB7tZNLTVugBnxoRmcR3rD4ALewArG6eTngqaO4uCRQg==",
+  "dgSpecHash": "FVOCe+UUb3hp2wXtMC/xYFFOjwYKnlmZZ2+zZlL/GS5qQEWBUigqsUvaYF3WxonL89qM97rGPYS47dgKu4xs5w==",
   "success": true,
-  "projectFilePath": "C:\\WORKSPACE\\PROJECTS\\GITSPACE\\Int24Types\\core5\\Int24Tests\\test_int24_dotnet_dll.csproj",
+  "projectFilePath": "c:\\WORKSPACE\\PROJECTS\\GITSPACE\\Int24Types\\core5\\Int24Tests\\Int24Tests.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

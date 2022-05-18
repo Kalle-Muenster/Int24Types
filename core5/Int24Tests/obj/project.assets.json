@@ -1,29 +1,11 @@
 {
   "version": 3,
   "targets": {
-    "net5.0": {
-      "Consola/1.0.0": {
-        "type": "project",
-        "compile": {
-          "bin/placeholder/Consola.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Consola.dll": {}
-        }
-      }
-    }
+    "net5.0": {}
   },
-  "libraries": {
-    "Consola/1.0.0": {
-      "type": "project",
-      "path": "../../../Consola/ConsolaCore5/ConsolaCore5/ConsolaCore5.vcxproj",
-      "msbuildProject": "../../../Consola/ConsolaCore5/ConsolaCore5/ConsolaCore5.vcxproj"
-    }
-  },
+  "libraries": {},
   "projectFileDependencyGroups": {
-    "net5.0": [
-      "Consola >= 1.0.0"
-    ]
+    "net5.0": []
   },
   "packageFolders": {
     "C:\\Users\\kalle\\.nuget\\packages\\": {},
@@ -33,9 +15,9 @@
   "project": {
     "version": "0.0.0.3",
     "restore": {
-      "projectUniqueName": "C:\\WORKSPACE\\PROJECTS\\GITSPACE\\Int24Types\\core5\\Int24Tests\\test_int24_dotnet_dll.csproj",
+      "projectUniqueName": "C:\\WORKSPACE\\PROJECTS\\GITSPACE\\Int24Types\\core5\\Int24Tests\\Int24Tests.csproj",
       "projectName": "Int24Types",
-      "projectPath": "C:\\WORKSPACE\\PROJECTS\\GITSPACE\\Int24Types\\core5\\Int24Tests\\test_int24_dotnet_dll.csproj",
+      "projectPath": "C:\\WORKSPACE\\PROJECTS\\GITSPACE\\Int24Types\\core5\\Int24Tests\\Int24Tests.csproj",
       "packagesPath": "C:\\Users\\kalle\\.nuget\\packages\\",
       "outputPath": "C:\\WORKSPACE\\PROJECTS\\GITSPACE\\Int24Types\\core5\\Int24Tests\\obj\\",
       "projectStyle": "PackageReference",
@@ -60,14 +42,7 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {
-            "C:\\WORKSPACE\\PROJECTS\\GITSPACE\\Consola\\ConsolaCore5\\ConsolaCore5Tests\\Consola.Tests.csproj": {
-              "projectPath": "C:\\WORKSPACE\\PROJECTS\\GITSPACE\\Consola\\ConsolaCore5\\ConsolaCore5Tests\\Consola.Tests.csproj"
-            },
-            "C:\\WORKSPACE\\PROJECTS\\GITSPACE\\Consola\\ConsolaCore5\\ConsolaCore5\\ConsolaCore5.vcxproj": {
-              "projectPath": "C:\\WORKSPACE\\PROJECTS\\GITSPACE\\Consola\\ConsolaCore5\\ConsolaCore5\\ConsolaCore5.vcxproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
@@ -94,7 +69,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }
