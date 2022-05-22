@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Int24Tests.Tests;
 using Consola.Test;
+using Consola;
 
 List<string> Args = new List<string>(args);
 

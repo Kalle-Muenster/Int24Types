@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Stepflow;
 using Consola.Test;
-using Consolo = Consola.Consola;
 
 namespace Stepflow {
     namespace Tests {
@@ -19,7 +18,7 @@ namespace Stepflow {
 
             protected override void TestSuite()
             {
-                Consolo.Out.WriteLine("version: {0}", assemblyversion.ToString());
+                Consola.StdStream.Out.WriteLine("version: {0}", assemblyversion.ToString());
                 NextCase("Int24Arithmetic");
                 arithmeticS24();
                 CloseCase( hasPassed() );
@@ -170,7 +169,7 @@ namespace Stepflow {
         {
             public static int Main( string[] args )
             {
-                Consolo.Init(
+                Consola.StdStream.Init(
                      Consola.CreationFlags.OutputLog
                 );
 

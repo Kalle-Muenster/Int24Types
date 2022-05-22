@@ -14,12 +14,12 @@ set Int24VersionString=0.0.0.3
 set DotNetVersionString=dot48
 
 :: Set Dependency locations
-if "ConsolaBinRoot"=="" (
+if "%ConsolaBinRoot%"=="" (
 set ConsolaBinRoot=C:\WORKSPACE\PROJECTS\GITSPACE\Consola\bin\%DotNetVersionString%
 )
 
 :: Set parameters and solution files
-call .\..\Args "%~1" "%~2" "%~3" "%~4" Int24Types.sln
+call %_root_%\Args "%~1" "%~2" "%~3" "%~4" Int24Types.sln
 
 :: Do the build
 cd %_here_%
@@ -27,4 +27,4 @@ call MsBuild %_target_% %_args_%
 cd %_call_%
 
 :: Cleanup Environment
-call .\..\Args ParameterCleanUp
+call %_root_%\Args ParameterCleanUp
