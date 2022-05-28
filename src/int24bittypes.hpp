@@ -1,14 +1,13 @@
 /*///////////////////////////////////////////////////////////*\
 ||                                                           ||
 ||     File:      int24bittypes.hpp                          ||
-||     Version:   0.0.0.3                                    ||
-||     Generated: 30.10.2019                                 ||
+||     Version:   0.0.0.4                                    ||
 ||                                                           ||
 \*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
 
 
 #ifndef VERSION_24BIT_DATATYPES
-#define VERSION_24BIT_DATATYPES (0x00000003)
+#define VERSION_24BIT_DATATYPES (0x00000004)
 
 #ifndef DECLARE_24BIT_NAMESPACE
 #define DECLARE_24BIT_NAMESPACE stepflow
@@ -39,7 +38,7 @@ typedef unsigned char      byte;
 typedef unsigned short     word;
 #ifndef QT_VERSION
 typedef unsigned int       uint;
-typedef unsigned longi     ulong;
+#define ulong unsigned long long
 #endif
 typedef signed longi       slong;
 typedef float              single;
@@ -84,7 +83,7 @@ typedef INT24TYPES_API signed int     s32;
 typedef INT24TYPES_API unsigned int   i32;
 typedef INT24TYPES_API signed longi   s64;
 typedef INT24TYPES_API unsigned longi i64;
-typedef INT24TYPES_API single         f32;
+typedef INT24TYPES_API float          f32;
 typedef INT24TYPES_API double         f64;
 
 
@@ -183,7 +182,7 @@ void safePaste4on3( _24bitTypeAbstractor<InputBlock,ChannelData>* dst_pt3ByteSam
 // type i24  - UINT_24BIT
 
 typedef struct UINT_24BIT
-    : _24bitTypeAbstractor<uint,byte>
+    : public _24bitTypeAbstractor<uint,byte>
 {
     UINT_24BIT( void ) {
         bytes[0] = bytes[1] = bytes[2] = 0;
@@ -284,7 +283,7 @@ typedef struct UINT_24BIT
 // type s24  - INT_24BIT
 
 typedef struct INT_24BIT
-    : _24bitTypeAbstractor<int,char>
+    : public _24bitTypeAbstractor<int,char>
 {
     INT_24BIT( void ) {
         bytes[0] = bytes[1] = bytes[2] = 0;
@@ -410,12 +409,45 @@ inline Int24 operator "" _s24(ulong value) {
 // 24bit types are recognized and handled correctly from
 // within other cpp std library functions when passed to
 #include <type_traits>
+#if !defined(_MSC_VER) && !defined(__MINGW32__) && !defined(__MINGW64__)
+#include <climits>
+#endif
 #include <limits>
 #ifndef _THROW0
 #define _THROW0() noexcept
 #endif
 
-#define NoFloatingPointTypeLimits \
+#ifdef _MSC_VER
+#define LIMITS_NAME_SPACE std::
+#define IntegerTypeLimits
+#define LIMITS_BASE_CLASS : public _Num_int_base
+#else
+namespace std {
+#define LIMITS_NAME_SPACE
+#define LIMITS_BASE_CLASS
+#define IntegerTypeLimits \
+    static constexpr bool is_specialized = true; \
+    static constexpr bool is_integer = true; \
+    static constexpr bool is_exact = true; \
+    static constexpr int  radix = 2; \
+    static constexpr int min_exponent = 0; \
+    static constexpr int min_exponent10 = 0; \
+    static constexpr int max_exponent = 0; \
+    static constexpr int max_exponent10 = 0; \
+    static constexpr bool has_infinity = false; \
+    static constexpr bool has_quiet_NaN = false; \
+    static constexpr bool has_signaling_NaN = false; \
+    static constexpr bool has_denorm_loss = false; \
+    static constexpr bool is_iec559 = false; \
+    static constexpr bool is_bounded = true; \
+    static constexpr bool traps = __glibcxx_integral_traps; \
+    static constexpr bool tinyness_before = false; \
+    static constexpr float_denorm_style has_denorm = denorm_absent; \
+    static constexpr float_round_style round_style = round_toward_zero;
+#endif
+
+
+#define NotUseFloatLimits \
 static constexpr _Ty::AritmeticType epsilon() _THROW0()\
 { /* return smallest effective increment from 1.0 */ return (0); }\
 \
@@ -435,29 +467,34 @@ static constexpr _Ty::AritmeticType signaling_NaN() _THROW0()\
 { /* return signaling NaN */ return (0); }
 
 
+#define NoFloatingPointTypeLimits \
+        IntegerTypeLimits \
+        NotUseFloatLimits
+        
+
 template<>
-struct std::is_floating_point<Int24>
+struct LIMITS_NAME_SPACE is_floating_point<Int24>
     : false_type
 { /* determine whether _Ty is floating point */ };
 
 template<>
-struct std::is_pointer<INT24_PTR>
+struct LIMITS_NAME_SPACE is_pointer<INT24_PTR>
     : true_type
 { /* determine whether _Ty is a pointer type */ };
 
 template<>
-struct std::is_floating_point<UInt24>
+struct LIMITS_NAME_SPACE is_floating_point<UInt24>
     : false_type
 { /* determine whether _Ty is floating point */ };
 
 template<>
-struct std::is_pointer<UINT24_PTR>
+struct LIMITS_NAME_SPACE is_pointer<UINT24_PTR>
     : true_type
 { /* determine whether _Ty is a pointer type */ };
 
 
-template<> class std::numeric_limits<Int24>
-    : public _Num_int_base
+template<> struct LIMITS_NAME_SPACE numeric_limits<Int24>
+    LIMITS_BASE_CLASS
 {  // limits for type Int24
 public:
     typedef Int24 _Ty;
@@ -474,17 +511,22 @@ public:
     static constexpr _Ty::AritmeticType lowest() _THROW0()
     { /* return most negative value */ return INT24_MIN; }
 
+    // Use Non-floatingpoint implementation defaults
     NoFloatingPointTypeLimits
 
+    // signed type speciffic implementation details
     static constexpr bool is_signed = true;
     static constexpr int digits = CHAR_BIT * sizeof(_Ty) - 1;
     static constexpr int digits10 = ( CHAR_BIT * sizeof(_Ty) - 1
                                      ) * 301L/1000;
+#ifndef _MSC_VER
+    static constexpr bool is_modulo = false;
+#endif
 };
 
 
-template<> class std::numeric_limits<UInt24>
-    : public _Num_int_base
+template<> struct LIMITS_NAME_SPACE numeric_limits<UInt24>
+    LIMITS_BASE_CLASS
 {  // limits for type UInt24
 public:
     typedef UInt24 _Ty;
@@ -501,16 +543,29 @@ public:
     static constexpr _Ty::AritmeticType lowest() _THROW0()
     { /* return most negative value */ return UINT24_MIN; }
 
+    // Use Non-floatingpoint implementation defaults
     NoFloatingPointTypeLimits
 
+    // unsigned type speciffic implementation details
     static constexpr bool is_signed = false;
     static constexpr int digits = CHAR_BIT * sizeof(_Ty);
     static constexpr int digits10 = ( CHAR_BIT * sizeof(_Ty)
                                      ) * 301L/1000;
+#ifndef _MSC_VER
+    static constexpr bool is_modulo = true;
+}; }
+#else
 };
+#endif
 
+
+
+#undef LIMITS_BASE_CLASS
+#undef LIMITS_NAME_SPACE
+#undef IntegerTypeLimits
+#undef NotUseFloatLimits
+#undef NoFloatingPointTypeLimits
 #endif //INT24_TYPETRAIT_SUPPORT
 
-#undef NoFloatingPointTypeLimits
 #undef longi
 #endif

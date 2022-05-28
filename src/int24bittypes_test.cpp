@@ -1,8 +1,9 @@
 #include <stdlib.h>
+#if defined(_MSC_VER) || defined(__MINGW32__) || defined(__MINGW64__)
 #include <conio.h>
+#endif
 #include <string.h>
 #include <stdio.h>
-#include <typeinfo>
 #include "int24bittypes.hpp"
 
 USING_INT24SPACE
@@ -90,9 +91,9 @@ uint i24_arythmetics(const char* name)
 }
 
 
-template<typename TwentyFourBitType> int comparision(const char* check)
+template<typename TwentyFourBitType> int comparision(const char* check, const char* name)
 {
-    printf( "\nVerifying comparison operators of %s type\n", typeid(TwentyFourBitType).name() );
+    printf( "\nVerifying comparison operators of %s type\n", name );
     int failures = 0;
     TwentyFourBitType sample;
 
@@ -120,7 +121,7 @@ template<typename TwentyFourBitType> int comparision(const char* check)
 }
 
 template<typename TwentyFourBitType,typename AssignmentType>
-int arrayAssignment( AssignmentType max )
+int arrayAssignment( AssignmentType max, const char* nam )
 {
     int failures = 0;
     TwentyFourBitType array[10];
@@ -131,7 +132,7 @@ int arrayAssignment( AssignmentType max )
         sample -= 1000;
     }
     printf( "\nVerifying values which have been (from index 9 downward) "
-             "assigned to a %s array\n", typeid(TwentyFourBitType).name() );
+             "assigned to a %s array\n", nam );
     sample += 1000;
     if( ( AssignmentType)array[0] != sample ) {
         printf( "\nFAIL: Sample %u at index 0 was expected to be: %u",
@@ -161,11 +162,11 @@ int main(int argc,char** argv)
     const char* check = 0;
 
     failures += s24_arythmetics("Signed");
-    failures += comparision<s24>(check);
-    failures += arrayAssignment<s24,int>(s24_MAX);
+    failures += comparision<s24>( check, "Int24" );
+    failures += arrayAssignment<s24,int>(s24_MAX,"Int24");
     failures += i24_arythmetics("Unsigned");
-    failures += comparision<i24>(check);
-    failures += arrayAssignment<i24,uint>(i24_MAX);
+    failures += comparision<i24>(check,"UInt24");
+    failures += arrayAssignment<i24,uint>(i24_MAX,"UInt24");
 
     INT_24BIT sample = 5000;
     sample = -sample;
