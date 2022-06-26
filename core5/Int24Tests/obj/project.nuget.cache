@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FVOCe+UUb3hp2wXtMC/xYFFOjwYKnlmZZ2+zZlL/GS5qQEWBUigqsUvaYF3WxonL89qM97rGPYS47dgKu4xs5w==",
+  "dgSpecHash": "jtfpdmasBh+hWbk+NaxNURYKUEp04//yU4Sp3uTTE5SVWyEb7hecC7JU7sMkPffLM8+M7CmNny/cP4Bg68MMpQ==",
   "success": true,
-  "projectFilePath": "c:\\WORKSPACE\\PROJECTS\\GITSPACE\\Int24Types\\core5\\Int24Tests\\Int24Tests.csproj",
+  "projectFilePath": "c:\\WORKSPACE\\PROJECTS\\Int24Types\\core5\\Int24Tests\\Int24Tests.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

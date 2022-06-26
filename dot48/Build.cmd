@@ -12,6 +12,7 @@ set _root_=%CD%
 set Int24VersionNumber=00000003
 set Int24VersionString=0.0.0.3
 set DotNetVersionString=dot48
+set _tool_=v142
 
 :: Set Dependency locations
 if "%ConsolaBinRoot%"=="" (
