@@ -16,7 +16,7 @@ set _tool_=v142
 
 :: Set Dependency locations
 if "%ConsolaBinRoot%"=="" (
-set ConsolaBinRoot=C:\WORKSPACE\PROJECTS\GITSPACE\Consola\bin\%DotNetVersionString%
+set ConsolaBinRoot=%_root_%\..\Consola\bin\%DotNetVersionString%
 )
 
 :: Set parameters and solution files
