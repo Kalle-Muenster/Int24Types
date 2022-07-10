@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "test_int24_dotnet_dll": {
+      "commandName": "Project",
+      "commandLineArgs": "--verbose --xml"
+    }
+  }
+}
