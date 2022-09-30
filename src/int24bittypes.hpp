@@ -538,7 +538,7 @@ public:
     { /* return maximum value */ return UINT24_MAX; }
 
     static constexpr _Ty::AritmeticType(db0)() _THROW0()
-    { /* return maximum value */ return UINT24_0DB; }
+    { /* return zerocross value */ return UINT24_0DB; }
 
     static constexpr _Ty::AritmeticType lowest() _THROW0()
     { /* return most negative value */ return UINT24_MIN; }

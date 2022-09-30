@@ -182,16 +182,17 @@ namespace Stepflow {
                         if (arg == "--verbose")
                         {
                             outputoptions |= TestResults.Verbose;
-                        } else if (arg == "--xml") {
+                        } else if (arg == "--xmllogs") {
                             outputoptions |= TestResults.XmlOutput;
                         }
                     }
                     else if (arg.Length > 1)
                     {
-                        if (arg[0] == '-' && arg[1] == 'v' && arg.Length == 2)
+                        if (arg[0] == '-' && arg.Length == 2)
                         {
-                            outputoptions |= TestResults.Verbose;
-                        }
+                            if ( arg[1] == 'v' ) outputoptions |= TestResults.Verbose;
+                            if ( arg[1] == 'x' ) outputoptions |= TestResults.XmlOutput;
+                        } 
                     }
                 }
 
