@@ -37,25 +37,25 @@ namespace Int24Tests {
                 };
             }
 
-            protected override void TestSuite()
+            protected override void OnStartUp()
             {
                 Consola.StdStream.Out.WriteLine("version: {0}", assemblyversion);
 
                 NextCase("Int24 - Arithmetic");
                 arithmeticS24();
-                CloseCase(CurrentCase);
+                CloseCase(CurrentCase.Name);
 
                 NextCase("Int24 - Array Acces");
                 nativeArraysS24();
-                CloseCase(hasPassed());
+                CloseCase(CurrentCase.Name);
 
                 NextCase("UInt24 - Arithmetic");
                 arithmeticI24();
-                CloseCase(hasPassed());
+                CloseCase(CurrentCase.Name);
                 
                 NextCase("UInt24 - Array Access");
                 nativeArraysI24();
-                CloseCase(hasPassed());
+                CloseCase(CurrentCase.Name);
             }
 
             private void arithmeticI24()

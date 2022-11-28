@@ -16,7 +16,7 @@ namespace Stepflow {
                 assemblyversion = System.Reflection.Assembly.GetAssembly(typeof(UInt24)).GetName().Version;
             }
 
-            protected override void TestSuite()
+            protected override void OnStartUp()
             {
                 Consola.StdStream.Out.WriteLine("version: {0}", assemblyversion.ToString());
                 NextCase("Int24Arithmetic");
@@ -30,7 +30,7 @@ namespace Stepflow {
                 CloseCase( hasPassed() );
                 NextCase("UInt24ArrayAccessings");
                 nativeArraysI24();
-                CloseCase(hasPassed());
+                CloseCase( hasPassed() );
             }
 
             private void arithmeticI24()
@@ -199,7 +199,7 @@ namespace Stepflow {
                 Test result = new Int24BitTypes( outputoptions ).Run();
                 failures += result.getFailures();
 
-                if ( result.wasErrors() ) {
+                if ( result.hasCrashed() ) {
                     string[] errs = result.getErrors();
                     Consola.StdStream.Err.Stream.Put("\n...FATAL ").Put(errs.Length).Put(" Error happend:\n");
                     for( int i=0; i<errs.Length; ++i ) {

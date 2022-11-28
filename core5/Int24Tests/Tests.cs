@@ -17,6 +17,6 @@ Test test = new Int24Types(
     Args.Contains("--xmllogs")
 ).Run();
 
-return test.wasErrors() ?
+return test.hasCrashed() ?
   -1 : test.hasPassed() ?
    0 : test.getFailures();
