@@ -21,30 +21,33 @@
     <ClInclude Include="settings.h">
       <Filter>Quelldateien</Filter>
     </ClInclude>
-    <ClInclude Include="D:\LIBRARIES\INCLUDES\enumoperators.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="D:\LIBRARIES\INCLUDES\namespacer.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Int24BitManagedTypes.hpp">
-      <Filter>Quelldateien</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\int24bittypes.hpp">
       <Filter>Quelldateien</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\versionmacro.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\etc\enumoperators.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\etc\namespacer.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Int24Type.hpp">
+      <Filter>Quelldateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\UInt24Type.hpp">
+      <Filter>Quelldateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Int24Types.cpp">
+    <ClCompile Include="..\..\src\Int24Type.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Int24IConvertibleTypes.cpp">
+    <ClCompile Include="..\..\src\UInt24Type.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

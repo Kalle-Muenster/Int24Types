@@ -78,13 +78,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Consola">
-      <HintPath>$(ConsolaBinRoot)\$(PlatformTarget)\$(Configuration)\Consola.dll</HintPath>
+      <HintPath>..\..\..\Consola\bin\dot48\x64\Release\Consola.dll</HintPath>
     </Reference>
     <Reference Include="Consola.Test">
-      <HintPath>$(ConsolaBinRoot)\$(PlatformTarget)\$(Configuration)\Consola.Test.dll</HintPath>
+      <HintPath>..\..\..\Consola\bin\dot48\x64\Release\Consola.Test.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />

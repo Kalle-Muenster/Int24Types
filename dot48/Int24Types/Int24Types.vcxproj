@@ -74,28 +74,28 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>.\;C:\CMD\CCommands;$(ProjectDir)..\..\src;$(ProjectDir)..\..\etc;$(IncludePath)</IncludePath>
+    <IncludePath>.\;$(ProjectDir)..\..\src;$(ProjectDir)..\..\etc;$(ProjectDir)..\..\..\Float16Type\Float16Type\src;$(IncludePath)</IncludePath>
     <OutDir>$(ProjectDir)..\..\bin\dot48\$(PlatformTarget)\$(Configuration)\</OutDir>
     <IntDir>$(PlatformTarget)\$(Configuration)\</IntDir>
     <LinkKeyFile>$(ProjectDir)..\..\Int24Types.snk</LinkKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>.\;C:\CMD\CCommands;$(ProjectDir)..\..\src;$(ProjectDir)..\..\etc;$(IncludePath)</IncludePath>
+    <IncludePath>.\;$(ProjectDir)..\..\src;$(ProjectDir)..\..\etc;$(ProjectDir)..\..\..\Float16Type\Float16Type\src;$(IncludePath)</IncludePath>
     <OutDir>$(ProjectDir)..\..\bin\dot48\$(PlatformTarget)\$(Configuration)\</OutDir>
     <IntDir>$(PlatformTarget)\$(Configuration)\</IntDir>
     <LinkKeyFile>$(ProjectDir)..\..\Int24Types.snk</LinkKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>.\;C:\CMD\CCommands;$(ProjectDir)..\..\src;$(ProjectDir)..\..\etc;$(IncludePath)</IncludePath>
+    <IncludePath>.\;$(ProjectDir)..\..\src;$(ProjectDir)..\..\etc;$(ProjectDir)..\..\..\Float16Type\Float16Type\src;$(IncludePath)</IncludePath>
     <OutDir>$(ProjectDir)..\..\bin\dot48\$(PlatformTarget)\$(Configuration)\</OutDir>
     <IntDir>$(PlatformTarget)\$(Configuration)\</IntDir>
     <LinkKeyFile>$(ProjectDir)..\..\Int24Types.snk</LinkKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>.\;C:\CMD\CCommands;$(ProjectDir)..\..\src;$(ProjectDir)..\..\etc;$(IncludePath)</IncludePath>
+    <IncludePath>.\;$(ProjectDir)..\..\src;$(ProjectDir)..\..\etc;$(ProjectDir)..\..\..\Float16Type\Float16Type\src;$(IncludePath)</IncludePath>
     <OutDir>$(ProjectDir)..\..\bin\dot48\$(PlatformTarget)\$(Configuration)\</OutDir>
     <IntDir>$(PlatformTarget)\$(Configuration)\</IntDir>
     <LinkKeyFile>$(ProjectDir)..\..\Int24Types.snk</LinkKeyFile>
@@ -106,6 +106,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;INT24TYPES_VERSION="$(Int24VersionString)";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <AdditionalOptions>/std:c++11 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies />
@@ -119,6 +120,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;INT24TYPES_VERSION="$(Int24VersionString)";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <AdditionalOptions>/std:c++11 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies />
@@ -136,6 +138,7 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
+      <AdditionalOptions>/std:c++11 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies />
@@ -153,6 +156,7 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
+      <AdditionalOptions>/std:c++11 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies />
@@ -167,7 +171,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\int24bittypes.hpp" />
-    <ClInclude Include="..\..\src\Int24BitManagedTypes.hpp" />
+    <ClInclude Include="..\..\src\Int24Type.hpp" />
+    <ClInclude Include="..\..\src\UInt24Type.hpp" />
     <ClInclude Include="..\..\src\versionmacro.h" />
     <ClInclude Include="..\..\etc\enumoperators.h" />
     <ClInclude Include="..\..\etc\namespacer.h" />
@@ -175,9 +180,9 @@
     <ClInclude Include="settings.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\Int24IConvertibleTypes.cpp" />
+    <ClCompile Include="..\..\src\Int24Type.cpp" />
+    <ClCompile Include="..\..\src\UInt24Type.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
-    <ClCompile Include="Int24Types.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

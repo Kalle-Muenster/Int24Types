@@ -75,25 +75,25 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>./;C:\CMD\CCommands;$(ProjectDir)../../src;D:\LIBRARIES\INCLUDES;C:\WORKSPACE\PROJECTS\Int24Types\src;$(IncludePath)</IncludePath>
+    <IncludePath>./;$(ProjectDir)../../src;$(ProjectDir)../../etc;$(ProjectDir)../../../Float16Type/Float16Type/src;$(IncludePath)</IncludePath>
     <OutDir>$(ProjectDir)..\..\bin\core5\$(PlatformTarget)\$(Configuration)\</OutDir>
     <IntDir>$(PlatformTarget)\$(Configuration)\</IntDir>
     <LinkKeyFile>$(ProjectDir)..\..\Int24Types.snk</LinkKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>./;C:\CMD\CCommands;$(ProjectDir)../../src;D:\LIBRARIES\INCLUDES;C:\WORKSPACE\PROJECTS\Int24Types\src;$(IncludePath)</IncludePath>
+    <IncludePath>./;$(ProjectDir)../../etc;$(ProjectDir)../../src;$(ProjectDir)../../../Float16Type/Float16Type/src;$(IncludePath)</IncludePath>
     <OutDir>$(ProjectDir)..\..\bin\core5\$(PlatformTarget)\$(Configuration)\</OutDir>
     <IntDir>$(PlatformTarget)\$(Configuration)\</IntDir>
     <LinkKeyFile>$(ProjectDir)..\..\Int24Types.snk</LinkKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>./;C:\CMD\CCommands;$(ProjectDir)../../src;D:\LIBRARIES\INCLUDES;C:\WORKSPACE\PROJECTS\Int24Types\src;$(IncludePath)</IncludePath>
+    <IncludePath>./;$(ProjectDir)../../src;$(ProjectDir)../../etc;$(ProjectDir)../../../Float16Type/Float16Type/src;$(IncludePath)</IncludePath>
     <OutDir>$(ProjectDir)..\..\bin\core5\$(PlatformTarget)\$(Configuration)\</OutDir>
     <IntDir>$(PlatformTarget)\$(Configuration)\</IntDir>
     <LinkKeyFile>$(ProjectDir)..\..\Int24Types.snk</LinkKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>./;C:\CMD\CCommands;$(ProjectDir)../../src;D:\LIBRARIES\INCLUDES;C:\WORKSPACE\PROJECTS\Int24Types\src;$(IncludePath)</IncludePath>
+    <IncludePath>./;$(ProjectDir)../../src;$(ProjectDir)../../etc;$(ProjectDir)../../../Float16Type/Float16Type/src;$(IncludePath)</IncludePath>
     <OutDir>$(ProjectDir)..\..\bin\core5\$(PlatformTarget)\$(Configuration)\</OutDir>
     <IntDir>$(PlatformTarget)\$(Configuration)\</IntDir>
     <LinkKeyFile>$(ProjectDir)..\..\Int24Types.snk</LinkKeyFile>
@@ -182,16 +182,17 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\Int24BitManagedTypes.hpp" />
     <ClInclude Include="..\..\src\int24bittypes.hpp" />
+    <ClInclude Include="..\..\src\Int24Type.hpp" />
+    <ClInclude Include="..\..\src\UInt24Type.hpp" />
     <ClInclude Include="..\..\src\versionmacro.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="settings.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\Int24IConvertibleTypes.cpp" />
+    <ClCompile Include="..\..\src\Int24Type.cpp" />
+    <ClCompile Include="..\..\src\UInt24Type.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
-    <ClCompile Include="Int24BitManagedTypes.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc" />

@@ -1,13 +1,13 @@
 /*///////////////////////////////////////////////////////////*\
 ||                                                           ||
 ||     File:      int24bittypes.hpp                          ||
-||     Version:   0.0.0.4                                    ||
+||     Version:   0.0.0.5                                    ||
 ||                                                           ||
 \*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
 
 
 #ifndef VERSION_24BIT_DATATYPES
-#define VERSION_24BIT_DATATYPES (0x00000004)
+#define VERSION_24BIT_DATATYPES (0x00000005)
 
 #ifndef DECLARE_24BIT_NAMESPACE
 #define DECLARE_24BIT_NAMESPACE stepflow
@@ -29,11 +29,13 @@
 #define INT24_TYPETRAIT_SUPPORT (1)
 #endif
 
+
 #include <stdint.h>
 
 #define longi long long
 
 #ifndef COMMANDLINER_ESCENTIALS_DEFINED
+#include <WaveLib.inl/numbersendian.h>
 typedef unsigned char      byte;
 typedef unsigned short     word;
 #ifndef QT_VERSION
@@ -62,14 +64,42 @@ typedef float              single;
 #endif
 #endif
 
-BEGIN_INT24SPACE
+#ifdef  HALF_HALF_HPP
+#define USE_HALFFLOAT (1)
+#elif defined( USE_HALFFLOAT )
+namespace half_float { class half; }
+#else
+#define F16DEF( definition )
+#define FLOAT_16BIT
+#define f16
+#endif
 
-struct UINT_24BIT;
-struct INT_24BIT;
+#if defined( USE_HALFFLOAT )
+#define F16DEF( definition ) \
+typedef INT24TYPES_API definition;
+typedef half_float::half FLOAT_16BIT;
+#endif
+
+#if NUMBER_ENDIANES == __BIG_ENDIAN
+#define SIZE24_MASK 0x00ffffffu
+#define PADDINGMASK 0xff000000
+#define _24BIT_MASK 0x00ffffff
+#define HIGHESTBYTE 2
+#else
+#define SIZE24_MASK 0xffffff00u
+#define PADDINGMASK 0x000000ff
+#define _24BIT_MASK 0xffffff00
+#define HIGHESTBYTE 0
+#endif
+
+
 
 /*---------------------------------------*\
 * Audiodata sampletype type definitions: *
 \*---------------------------------------*/
+BEGIN_INT24SPACE
+struct UINT_24BIT;
+struct INT_24BIT;
 
 // datatypes used for audio sample data:
 // (s's are signed, i's are unsigned)
@@ -77,6 +107,7 @@ typedef INT24TYPES_API signed char    s8;
 typedef INT24TYPES_API unsigned char  i8;
 typedef INT24TYPES_API signed short   s16;
 typedef INT24TYPES_API unsigned short i16;
+F16DEF( INT24TYPES_API FLOAT_16BIT    f16)
 typedef INT24TYPES_API UINT_24BIT     i24;
 typedef INT24TYPES_API INT_24BIT      s24;
 typedef INT24TYPES_API signed int     s32;
@@ -106,7 +137,9 @@ typedef INT24TYPES_API double         f64;
 #define INT32_0DB   (0)
 #define UINT32_MIN  (0u)
 #define UINT32_0DB  (2147483648u)
-
+#define INT64_0DB   (0ll)
+#define UINT64_MIN  (0llu)
+#define UINT64_0DB  (9223372036854775808llu)
 
 // type limits of most integer types maybe
 // used for transporting audio data,..
@@ -135,11 +168,15 @@ typedef INT24TYPES_API double         f64;
 #define s32_MIN INT32_MIN
 #define s32_MAX INT32_MAX
 #define s32_0DB INT32_0DB
+#define i64_MIN UINT64_MIN
+#define i64_MAX UINT64_MAX
+#define i64_0DB UINT64_0DB
+#define s64_MIN INT64_MIN
+#define s64_MAX INT64_MAX
+#define s64_0DB INT64_0DB
 
-
-// Get distinct limit <tLim> of given type <dTyp>  ... e.g. like DataTypeLimit(s24,0DB)
+// Get distinct limit <tLim> of given type <dTyp>  ...like DataTypeLimit(i24,0DB)
 #define DataTypeLimmit(dTyp,tLim) dTyp##_##tLim
-
 
 
 
@@ -150,7 +187,7 @@ typedef INT24TYPES_API double         f64;
 
 // helper for proper safe pasting 4on3 / 3on4 bytes
 template< typename T32, typename T8 > union Truncator {
-    T32  data;
+    T32  block32;
     T8   byte[4];
 };
 
@@ -169,12 +206,20 @@ template< typename aT = DataTy,typename dT = BaseTy >
 // safe paste operator which handles assigning 32bit integers to data arrays of 3byte steplegths
 // which ensures no data which follows before or after a target frames 3byte boundary get damaged 
 template< typename InputBlock, typename ChannelData > inline
-void safePaste4on3( _24bitTypeAbstractor<InputBlock,ChannelData>* dst_pt3ByteSample,
-                    const InputBlock src_4ByteData ) {
-    const union Truncator<InputBlock,ChannelData> trunc = { src_4ByteData };
-    dst_pt3ByteSample->bytes[0] = trunc.byte[0];
-    dst_pt3ByteSample->bytes[1] = trunc.byte[1];
-    dst_pt3ByteSample->bytes[2] = trunc.byte[2];
+void safePaste4on3( _24bitTypeAbstractor<InputBlock,ChannelData>* ptr_3ByteBlock,
+                    const InputBlock val_4ByteBlock ) {
+    const union Truncator<InputBlock,ChannelData> truncator = { val_4ByteBlock };
+#if NUMBER_ENDIANES == __BIG_ENDIAN
+    //ptr_3ByteBlock->bytes[0] = truncator.byte[0];
+    //ptr_3ByteBlock->bytes[1] = truncator.byte[1];
+    //ptr_3ByteBlock->bytes[2] = truncator.byte[2];
+    memcpy( ptr_3ByteBlock, &truncator.byte[0], 3 );
+#else
+    //ptr_3ByteBlock->bytes[0] = truncator.byte[1];
+    //ptr_3ByteBlock->bytes[1] = truncator.byte[2];
+    //ptr_3ByteBlock->bytes[2] = truncator.byte[3];
+    memcpy( ptr_3ByteBlock, &truncator.byte[1], 3 );
+#endif
 }
 
 
@@ -185,14 +230,16 @@ typedef struct UINT_24BIT
     : public _24bitTypeAbstractor<uint,byte>
 {
     UINT_24BIT( void ) {
-        bytes[0] = bytes[1] = bytes[2] = 0;
+        safePaste4on3<uint,byte>( this, 0u );
+        // bytes[0] = bytes[1] = bytes[2] = 0;
     };
     UINT_24BIT( const UINT_24BIT& copy ) {
-        bytes[0] = copy.bytes[0];
-        bytes[1] = copy.bytes[1];
-        bytes[2] = copy.bytes[2];
+        //bytes[0] = copy.bytes[0];
+        //bytes[1] = copy.bytes[1];
+        //bytes[2] = copy.bytes[2];
+        memcpy( &bytes[0], &copy, 3 );
     }
-    UINT_24BIT( AritmeticType& converted ) {
+    UINT_24BIT( const AritmeticType& converted ) {
         safePaste4on3<uint,byte>( this, converted );
     }
     UINT_24BIT( int converted )
@@ -204,63 +251,72 @@ typedef struct UINT_24BIT
     explicit UINT_24BIT( double abnormal )
         : UINT_24BIT( (AritmeticType)(int)abnormal ) {
     }
-
+#ifdef USE_HALFFLOAT
+    explicit UINT_24BIT( Float16 abnormal ) // rounding towards 'wave center' (8388608.0_h) would be better here, (but hance to thats no option, rounding to nearest is chosen)
+        : UINT_24BIT( half_float::half_cast<WORD_PRCISION,std::round_to_nearest,Float16>( abnormal ) ) {
+    }
+#endif
     UINT_24BIT( slong cast )
         : UINT_24BIT( (AritmeticType)cast ) {
     }
 
-    inline const UINT_24BIT& convertFrom( i32 sample ) {
+    inline UINT_24BIT convertFrom( i32 sample ) {
         safePaste4on3<uint, byte>( this, AritmeticType(((i64)sample * UINT24_MAX) / UINT32_MAX) );
         return *this;
     }
-    inline const UINT_24BIT& convertFrom( s16 sample ) {
+    inline UINT_24BIT convertFrom( s16 sample ) {
         safePaste4on3<uint, byte>( this, AritmeticType((((i64)INT16_MAX + sample) * UINT24_MAX) / UINT16_MAX) );
         return *this;
     }
-    inline const UINT_24BIT& convertFrom( f32 sample ) {
+#ifdef USE_HALFFLOAT
+    inline UINT_24BIT convertFrom( f16 sample ) {
+        safePaste4on3<uint, byte>( this, AritmeticType( half_float::half_cast<WORD_PRCISION,std::round_toward_zero,f16>( sample ) * INT24_MAX ) + UINT24_0DB );
+        return *this; }
+#endif
+    inline UINT_24BIT convertFrom( f32 sample ) {
         safePaste4on3<uint, byte>( this, AritmeticType((sample * INT24_MAX) + UINT24_0DB) );
         return *this;
     }
-    inline const UINT_24BIT& convertFrom( f64 sample ) {
+    inline UINT_24BIT convertFrom( f64 sample ) {
         safePaste4on3<uint, byte>( this, AritmeticType((sample * INT24_MAX) + UINT24_0DB) );
         return *this;
     }
 
     inline AritmeticType arithmetic_cast() const {
-        return 0x00ffffffu & *(AritmeticType*)&bytes[0];
+        return SIZE24_MASK & *reinterpret_cast<AritmeticType*>( &bytes[0] );
     }
     inline operator AritmeticType() const {
         return arithmetic_cast();
     }
-    inline operator AritmeticType() {
+    inline operator uint() {
         return arithmetic_cast();
     }
 
     const UINT_24BIT& operator =( const UINT_24BIT& assigned ) {
-        bytes[0] = assigned.bytes[0];
-        bytes[1] = assigned.bytes[1];
-        bytes[2] = assigned.bytes[2];
-        return *this;
+        //bytes[0] = assigned.bytes[0];
+        //bytes[1] = assigned.bytes[1];
+        //bytes[2] = assigned.bytes[2];
+        return *(UINT_24BIT*)memcpy( &bytes[0], &assigned, 3 );
     }
 
     const UINT_24BIT& operator =( const AritmeticType& assign ) {
-        safePaste4on3<uint, byte>( this, assign );
+        safePaste4on3<uint,byte>( this, assign );
         return *this;
     }
 
-    inline const UINT_24BIT& operator +=( const UINT_24BIT& add ) {
+    inline UINT_24BIT operator +=( const UINT_24BIT& add ) {
         safePaste4on3<uint, byte>( this, arithmetic_cast() + add.arithmetic_cast() );
         return *this;
     }
-    inline const UINT_24BIT& operator -=( const UINT_24BIT& sub ) {
+    inline UINT_24BIT operator -=( const UINT_24BIT& sub ) {
         safePaste4on3<uint, byte>( this, arithmetic_cast() - sub.arithmetic_cast() );
         return *this;
     }
-    inline const UINT_24BIT& operator *=( const UINT_24BIT& mul ) {
+    inline UINT_24BIT operator *=( const UINT_24BIT& mul ) {
         safePaste4on3<uint, byte>( this, arithmetic_cast() * mul.arithmetic_cast() );
         return *this;
     }
-    inline const UINT_24BIT& operator /=( const UINT_24BIT& div ) {
+    inline UINT_24BIT operator /=( const UINT_24BIT& div ) {
         safePaste4on3<uint, byte>( this, arithmetic_cast() / div.arithmetic_cast() );
         return *this;
     }
@@ -272,7 +328,7 @@ typedef struct UINT_24BIT
         return !operator==( that );
     }
     inline bool operator !(void) const {
-        return (bytes[0] | bytes[1] | bytes[2]) == 0;
+        return arithmetic_cast() == 0u;
     }
 
 } UINT_24BIT, *PTR_UINT24, &UINT24_REF;
@@ -286,77 +342,91 @@ typedef struct INT_24BIT
     : public _24bitTypeAbstractor<int,char>
 {
     INT_24BIT( void ) {
-        bytes[0] = bytes[1] = bytes[2] = 0;
+    //  bytes[0] = bytes[1] = bytes[2] = 0;
+        safePaste4on3<int,char>( this, 0 );
     }
     INT_24BIT( const INT_24BIT& copy ) {
-        bytes[0] = copy.bytes[0];
-        bytes[1] = copy.bytes[1];
-        bytes[2] = copy.bytes[2];
+    //  bytes[0] = copy.bytes[0];
+    //  bytes[1] = copy.bytes[1];
+    //  bytes[2] = copy.bytes[2];
+        memcpy( &bytes[0], &copy, 3 );
     }
     INT_24BIT( const AritmeticType& converted ) {
         safePaste4on3<int,char>( this, converted );
     }
+#ifdef USE_HALFFLOAT
+    explicit INT_24BIT( f16 abnormal )
+        : INT_24BIT( half_float::half_cast<WORD_PRCISION,std::round_toward_zero,f16>( abnormal ) ) {
+    }
+#endif
     explicit INT_24BIT( f32 abnormal )
         : INT_24BIT( (AritmeticType)abnormal ) {
     }
     explicit INT_24BIT( f64 abnormal )
         : INT_24BIT( (AritmeticType)abnormal ) {
     }
-    INT_24BIT(slong cast)
-        : INT_24BIT( (AritmeticType)cast ) {
+    INT_24BIT( slong cast )
+        : INT_24BIT( (const AritmeticType)cast ) {
     }
 
     inline const INT_24BIT& convertFrom( i32 sample ) {
-        safePaste4on3<int, char>( this, AritmeticType(( ((i64)sample * UINT24_MAX) / UINT32_MAX) - UINT24_0DB) );
+        safePaste4on3<int, char>( this, AritmeticType( ( ((i64)sample * UINT24_MAX) / UINT32_MAX ) - UINT24_0DB ) );
         return *this;
     }
     inline const INT_24BIT& convertFrom( s16 sample ) {
-        safePaste4on3<int, char>(this, AritmeticType( ((s64)sample * INT24_MAX) / INT16_MAX) );
+        safePaste4on3<int, char>( this, AritmeticType( ((s64)sample * INT24_MAX) / INT16_MAX ) );
         return *this;
     }
+#ifdef USE_HALFFLOAT
+    inline const INT_24BIT& convertFrom( f16 sample ) {
+        safePaste4on3<int, char>( this, AritmeticType( half_float::half_cast<WORD_PRCISION,std::round_toward_zero,f16>( sample ) * INT24_MAX ) );
+        return *this; }
+#endif
     inline const INT_24BIT& convertFrom( f32 sample ) {
-        safePaste4on3<int, char>( this, AritmeticType(sample*INT24_MAX) );
+        safePaste4on3<int, char>( this, AritmeticType( sample * INT24_MAX ) );
         return *this;
     }
     inline const INT_24BIT& convertFrom( f64 sample ) {
-        safePaste4on3<int, char>( this, AritmeticType(sample*INT24_MAX) );
+        safePaste4on3<int, char>( this, AritmeticType( sample * INT24_MAX ) );
         return *this;
     }
 
     inline AritmeticType arithmetic_cast() const {
-        return ( (0x00ffffff & *(i32*)&bytes[0]) | (bytes[2] < 0 ? 0xff000000 : 0x00000000)  );
+        return ( ( _24BIT_MASK & *reinterpret_cast<AritmeticType*>( &bytes[0] ) ) 
+               | ( bytes[HIGHESTBYTE] < 0 ? PADDINGMASK : 0x00000000 ) );
     }
     inline operator AritmeticType() const {
         return arithmetic_cast();
     }
-    inline operator AritmeticType() {
+    inline operator int() {
         return arithmetic_cast();
     }
 
-    const INT_24BIT& operator =( const INT_24BIT& assigned ) {
-        bytes[0] = assigned.bytes[0];
-        bytes[1] = assigned.bytes[1];
-        bytes[2] = assigned.bytes[2];
-        return *this;
+    INT_24BIT& operator =( const INT_24BIT& assigned ) {
+    //  bytes[0] = assigned.bytes[0];
+    //  bytes[1] = assigned.bytes[1];
+    //  bytes[2] = assigned.bytes[2];
+        return *(INT_24BIT*)memcpy( &bytes[0], &assigned, 3 );
+    //  return *this;
     }
     const INT_24BIT& operator =( const AritmeticType& assign ) {
         safePaste4on3<int, char>( this, assign );
         return *this;
     }
 
-    inline const INT_24BIT& operator +=( const INT_24BIT& add ) {
+    inline INT_24BIT operator +=( const INT_24BIT& add ) {
         safePaste4on3<int, char>( this, arithmetic_cast() + add.arithmetic_cast() );
         return *this;
     }
-    inline const INT_24BIT& operator -=( const INT_24BIT& sub ) {
+    inline INT_24BIT operator -=( const INT_24BIT& sub ) {
         safePaste4on3<int, char>( this, arithmetic_cast() - sub.arithmetic_cast() );
         return *this;
     }
-    inline const INT_24BIT& operator *=( const INT_24BIT& mul ) {
+    inline INT_24BIT operator *=( const INT_24BIT& mul ) {
         safePaste4on3<int, char>( this, arithmetic_cast() * mul.arithmetic_cast() );
         return *this;
     }
-    inline const INT_24BIT& operator /=( const INT_24BIT& div ) {
+    inline INT_24BIT operator /=( const INT_24BIT& div ) {
         safePaste4on3<int, char>( this, arithmetic_cast() / div.arithmetic_cast() );
         return *this;
     }
@@ -368,11 +438,12 @@ typedef struct INT_24BIT
         return !operator==(that);
     }
     inline bool operator !(void) const {
-        return (bytes[0] | bytes[1] | bytes[2]) == 0;
+     // return (bytes[0] | bytes[1] | bytes[2]) == 0;
+        return !arithmetic_cast();
     }
 
     inline INT_24BIT operator -(void) const {
-        return (INT_24BIT)-arithmetic_cast();
+        return INT_24BIT( -arithmetic_cast() );
     }
 
 } INT_24BIT, *PTR_INT24, &INT24_REF;
@@ -392,10 +463,10 @@ typedef Int24sNameSpace(INT_24BIT*)  INT24_PTR;
 #ifdef INT24_LITERAL_OPERATORS
 // operators which declare numeric 24bit literals which shall be safe
 // when assigning hardcoded values to int24 array data by [] operators
-inline UInt24 operator "" _u24(ulong value) {
+inline const UInt24 operator "" _u24( ulong value ) {
     return UInt24(uint(value & 0x0000000000ffffff));
 }
-inline Int24 operator "" _s24(ulong value) {
+inline const Int24 operator "" _s24( ulong value ) {
     return Int24(int(uint((value >> 63) << 23)
          | uint(value & 0x007fffff)));
 }
@@ -558,8 +629,15 @@ public:
 };
 #endif
 
-
-
+#if !defined(USE_HALFFLOAT)
+#undef f16
+#undef FLOAT_24BIT
+#endif
+#undef F16DEF
+#undef SIZE24_MASK
+#undef PADDINGMASK
+#undef _24BIT_MASK
+#undef HIGHESTBYTE
 #undef LIMITS_BASE_CLASS
 #undef LIMITS_NAME_SPACE
 #undef IntegerTypeLimits

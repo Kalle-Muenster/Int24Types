@@ -6,7 +6,7 @@ using Consola.Test;
 namespace Stepflow {
     namespace Tests {
 
-        public class Int24BitTypes : Test
+        public class Int24BitTypes : Consola.Test.Test
         {
             private Version assemblyversion;
 

@@ -5,7 +5,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <ApplicationIcon>obstacle.ico</ApplicationIcon>
     <Platforms>x64;x86</Platforms>
-    <Version>0.0.0.3</Version>
+    <Version>$(Int24VersionString)</Version>
     <Description>Int24Types Testrun</Description>
     <PackageIcon>objecticon.png</PackageIcon>
     <BaseOutputPath>..\..\bin\core5\</BaseOutputPath>
@@ -13,7 +13,7 @@
     <DebugType>full</DebugType>
     <SignAssembly>False</SignAssembly>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <FileVersion>0.0.0.3</FileVersion>
+    <FileVersion>$(Int24VersionString)</FileVersion>
     <Product>Int24Types</Product>
     <PackageId>Int24Types</PackageId>
     <Company>audio</Company>
@@ -49,10 +49,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Int24Type\Int24Type.vcxproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="objecticon.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
@@ -66,7 +62,7 @@
     <Reference Include="Consola.Test">
       <HintPath>$(ConsolaBinRoot)\$(PlatformTarget)\$(Configuration)\Consola.Test.dll</HintPath>
     </Reference>
-    <Reference Include="Int24Types Version=0.0.0.3">
+    <Reference Include="Int24Types">
       <HintPath>$(BaseOutputPath)$(PlatformTarget)\$(Configuration)\Int24Types.dll</HintPath>
     </Reference>
   </ItemGroup>

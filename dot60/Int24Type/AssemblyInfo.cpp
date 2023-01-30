@@ -8,7 +8,7 @@ using namespace System::Security::Permissions;
 
 [assembly:AssemblyTitleAttribute(L"Int24Type")];
 [assembly:AssemblyDescriptionAttribute(L"")];
-[assembly:AssemblyConfigurationAttribute( INT24TYPES_CONFIGURATION )];
+[assembly:AssemblyConfigurationAttribute( INT24_BUILD_CONFIGURATION )];
 [assembly:AssemblyCompanyAttribute(L"")];
 [assembly:AssemblyProductAttribute(L"Int24Type")];
 [assembly:AssemblyCopyrightAttribute(L"Copyright (c)  2021")];

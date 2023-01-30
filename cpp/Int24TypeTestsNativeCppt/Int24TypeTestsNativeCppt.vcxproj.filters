@@ -18,6 +18,15 @@
     <ClInclude Include="..\..\src\int24bittypes.hpp">
       <Filter>Quelldateien</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\etc\enumoperators.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\etc\namespacer.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\WaveLib.inl\numbersendian.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\int24bittypes_test.cpp">

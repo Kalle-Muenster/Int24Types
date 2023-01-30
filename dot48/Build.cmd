@@ -9,8 +9,8 @@ cd..
 set _root_=%CD%
 
 :: Set Version
-set Int24VersionNumber=00000003
-set Int24VersionString=0.0.0.3
+set Int24VersionNumber=00000005
+set Int24VersionString=0.0.0.5
 set DotNetVersionString=dot48
 set _tool_=v142
 

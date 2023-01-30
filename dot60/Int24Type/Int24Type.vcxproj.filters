@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="include">
-      <UniqueIdentifier>{d1f827aa-a469-4d33-9e54-f7f0c1e9e08b}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resource.h">
@@ -24,7 +21,7 @@
     <ClInclude Include="settings.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Int24BitManagedTypes.hpp">
+    <ClInclude Include="..\..\src\Int24Type.hpp">
       <Filter>Quelldateien</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\int24bittypes.hpp">
@@ -33,15 +30,18 @@
     <ClInclude Include="..\..\src\versionmacro.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\UInt24Type.hpp">
+      <Filter>Quelldateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Int24BitManagedTypes.cpp">
+    <ClCompile Include="..\..\src\Int24Type.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Int24IConvertibleTypes.cpp">
+    <ClCompile Include="..\..\src\UInt24Type.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
