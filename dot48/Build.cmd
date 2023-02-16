@@ -1,4 +1,4 @@
-@echo off
+@if "%ECHO_STATE%"=="" (@echo off ) else (@echo %ECHO_STATE% )
 
 :: Prepare locations
 set _name_=Int24Types
