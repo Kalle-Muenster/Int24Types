@@ -20,17 +20,17 @@ namespace Stepflow {
             {
                 Consola.StdStream.Out.WriteLine("version: {0}", assemblyversion.ToString());
                 NextCase("Int24Arithmetic");
-                arithmeticS24();
-                CloseCase( hasPassed() );
+                    arithmeticS24();
+                CloseCase();
                 NextCase("Int24ArrayAccesings");
-                nativeArraysS24();
-                CloseCase( hasPassed() );
+                    nativeArraysS24();
+                CloseCase();
                 NextCase("UInt24Arithmetic");
-                arithmeticI24();
-                CloseCase( hasPassed() );
+                    arithmeticI24();
+                CloseCase();
                 NextCase("UInt24ArrayAccessings");
-                nativeArraysI24();
-                CloseCase( hasPassed() );
+                    nativeArraysI24();
+                CloseCase();
             }
 
             private void arithmeticI24()

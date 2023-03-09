@@ -42,20 +42,20 @@ namespace Int24Tests {
                 Consola.StdStream.Out.WriteLine("version: {0}", assemblyversion);
 
                 NextCase("Int24 - Arithmetic");
-                arithmeticS24();
-                CloseCase(CurrentCase.Name);
+                    arithmeticS24();
+                CloseCase();
 
                 NextCase("Int24 - Array Acces");
-                nativeArraysS24();
-                CloseCase(CurrentCase.Name);
+                    nativeArraysS24();
+                CloseCase();
 
                 NextCase("UInt24 - Arithmetic");
-                arithmeticI24();
-                CloseCase(CurrentCase.Name);
+                    arithmeticI24();
+                CloseCase();
                 
                 NextCase("UInt24 - Array Access");
-                nativeArraysI24();
-                CloseCase(CurrentCase.Name);
+                    nativeArraysI24();
+                CloseCase();
             }
 
             private void arithmeticI24()
